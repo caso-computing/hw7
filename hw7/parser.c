@@ -6,6 +6,9 @@
 
 #define BLOCK 4096
 
+////Thankyou Prof Long for this paarse code that uses a compiled regex to parse a record file!
+
+
 static char *words[BLOCK] = { NULL }; // Stores a block of words maximum.
 
 //

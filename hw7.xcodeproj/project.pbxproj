@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7248948B27D02BFB008E15FB /* businessdb.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248948A27D02BFB008E15FB /* businessdb.c */; };
 		7248949627D02CF4008E15FB /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248949527D02CF4008E15FB /* parser.c */; };
-		7248949C27D55AAD008E15FB /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248949827D55AAD008E15FB /* hashtable.c */; };
 		7248949D27D55AAD008E15FB /* speck.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248949927D55AAD008E15FB /* speck.c */; };
 /* End PBXBuildFile section */
 
@@ -145,7 +144,6 @@
 				7248949627D02CF4008E15FB /* parser.c in Sources */,
 				7248948B27D02BFB008E15FB /* businessdb.c in Sources */,
 				7248949D27D55AAD008E15FB /* speck.c in Sources */,
-				7248949C27D55AAD008E15FB /* hashtable.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

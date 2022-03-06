@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7248948B27D02BFB008E15FB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248948A27D02BFB008E15FB /* main.c */; };
+		7248948B27D02BFB008E15FB /* businessdb.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248948A27D02BFB008E15FB /* businessdb.c */; };
+		7248949627D02CF4008E15FB /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248949527D02CF4008E15FB /* parser.c */; };
+		7248949C27D55AAD008E15FB /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248949827D55AAD008E15FB /* hashtable.c */; };
+		7248949D27D55AAD008E15FB /* speck.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248949927D55AAD008E15FB /* speck.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +27,17 @@
 
 /* Begin PBXFileReference section */
 		7248948727D02BFB008E15FB /* hw7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hw7; sourceTree = BUILT_PRODUCTS_DIR; };
-		7248948A27D02BFB008E15FB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		7248948A27D02BFB008E15FB /* businessdb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = businessdb.c; sourceTree = "<group>"; };
+		7248949127D02CF3008E15FB /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		7248949227D02CF4008E15FB /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		7248949327D02CF4008E15FB /* bst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bst.h; sourceTree = "<group>"; };
+		7248949427D02CF4008E15FB /* ht.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ht.h; sourceTree = "<group>"; };
+		7248949527D02CF4008E15FB /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
+		7248949727D034EB008E15FB /* customers.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customers.tsv; sourceTree = "<group>"; };
+		7248949827D55AAD008E15FB /* hashtable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hashtable.c; sourceTree = "<group>"; };
+		7248949927D55AAD008E15FB /* speck.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = speck.c; sourceTree = "<group>"; };
+		7248949A27D55AAD008E15FB /* speck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speck.h; sourceTree = "<group>"; };
+		7248949B27D55AAD008E15FB /* salts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = salts.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +70,17 @@
 		7248948927D02BFB008E15FB /* hw7 */ = {
 			isa = PBXGroup;
 			children = (
-				7248948A27D02BFB008E15FB /* main.c */,
+				7248949827D55AAD008E15FB /* hashtable.c */,
+				7248949B27D55AAD008E15FB /* salts.h */,
+				7248949927D55AAD008E15FB /* speck.c */,
+				7248949A27D55AAD008E15FB /* speck.h */,
+				7248949727D034EB008E15FB /* customers.tsv */,
+				7248948A27D02BFB008E15FB /* businessdb.c */,
+				7248949327D02CF4008E15FB /* bst.h */,
+				7248949427D02CF4008E15FB /* ht.h */,
+				7248949227D02CF4008E15FB /* node.h */,
+				7248949527D02CF4008E15FB /* parser.c */,
+				7248949127D02CF3008E15FB /* parser.h */,
 			);
 			path = hw7;
 			sourceTree = "<group>";
@@ -119,7 +142,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7248948B27D02BFB008E15FB /* main.c in Sources */,
+				7248949627D02CF4008E15FB /* parser.c in Sources */,
+				7248948B27D02BFB008E15FB /* businessdb.c in Sources */,
+				7248949D27D55AAD008E15FB /* speck.c in Sources */,
+				7248949C27D55AAD008E15FB /* hashtable.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

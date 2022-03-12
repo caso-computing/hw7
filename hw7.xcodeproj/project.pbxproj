@@ -10,6 +10,10 @@
 		7248948B27D02BFB008E15FB /* businessdb.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248948A27D02BFB008E15FB /* businessdb.c */; };
 		7248949627D02CF4008E15FB /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248949527D02CF4008E15FB /* parser.c */; };
 		7248949D27D55AAD008E15FB /* speck.c in Sources */ = {isa = PBXBuildFile; fileRef = 7248949927D55AAD008E15FB /* speck.c */; };
+		72818E1927D58361007FFFC1 /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = 72818E1827D58361007FFFC1 /* input.c */; };
+		72818E1D27D6B95D007FFFC1 /* ht.c in Sources */ = {isa = PBXBuildFile; fileRef = 72818E1C27D6B95D007FFFC1 /* ht.c */; };
+		72818E1F27D6CE66007FFFC1 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 72818E1E27D6CE66007FFFC1 /* node.c */; };
+		72818E3E27DAAB34007FFFC1 /* bst.c in Sources */ = {isa = PBXBuildFile; fileRef = 72818E3D27DAAB34007FFFC1 /* bst.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +41,13 @@
 		7248949927D55AAD008E15FB /* speck.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = speck.c; sourceTree = "<group>"; };
 		7248949A27D55AAD008E15FB /* speck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speck.h; sourceTree = "<group>"; };
 		7248949B27D55AAD008E15FB /* salts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = salts.h; sourceTree = "<group>"; };
+		72818E1727D58361007FFFC1 /* input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
+		72818E1827D58361007FFFC1 /* input.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = input.c; sourceTree = "<group>"; };
+		72818E1A27D6A5C3007FFFC1 /* DESIGN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DESIGN.md; sourceTree = "<group>"; };
+		72818E1B27D6A68D007FFFC1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		72818E1C27D6B95D007FFFC1 /* ht.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ht.c; sourceTree = "<group>"; };
+		72818E1E27D6CE66007FFFC1 /* node.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = node.c; sourceTree = "<group>"; };
+		72818E3D27DAAB34007FFFC1 /* bst.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bst.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,16 +81,23 @@
 			isa = PBXGroup;
 			children = (
 				7248949827D55AAD008E15FB /* hashtable.c */,
-				7248949B27D55AAD008E15FB /* salts.h */,
-				7248949927D55AAD008E15FB /* speck.c */,
-				7248949A27D55AAD008E15FB /* speck.h */,
 				7248949727D034EB008E15FB /* customers.tsv */,
 				7248948A27D02BFB008E15FB /* businessdb.c */,
-				7248949327D02CF4008E15FB /* bst.h */,
+				72818E1C27D6B95D007FFFC1 /* ht.c */,
 				7248949427D02CF4008E15FB /* ht.h */,
-				7248949227D02CF4008E15FB /* node.h */,
+				72818E1827D58361007FFFC1 /* input.c */,
+				72818E1727D58361007FFFC1 /* input.h */,
 				7248949527D02CF4008E15FB /* parser.c */,
 				7248949127D02CF3008E15FB /* parser.h */,
+				7248949927D55AAD008E15FB /* speck.c */,
+				7248949A27D55AAD008E15FB /* speck.h */,
+				72818E3D27DAAB34007FFFC1 /* bst.c */,
+				7248949327D02CF4008E15FB /* bst.h */,
+				72818E1E27D6CE66007FFFC1 /* node.c */,
+				7248949227D02CF4008E15FB /* node.h */,
+				7248949B27D55AAD008E15FB /* salts.h */,
+				72818E1A27D6A5C3007FFFC1 /* DESIGN.md */,
+				72818E1B27D6A68D007FFFC1 /* README.md */,
 			);
 			path = hw7;
 			sourceTree = "<group>";
@@ -141,9 +159,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72818E1927D58361007FFFC1 /* input.c in Sources */,
 				7248949627D02CF4008E15FB /* parser.c in Sources */,
 				7248948B27D02BFB008E15FB /* businessdb.c in Sources */,
 				7248949D27D55AAD008E15FB /* speck.c in Sources */,
+				72818E3E27DAAB34007FFFC1 /* bst.c in Sources */,
+				72818E1D27D6B95D007FFFC1 /* ht.c in Sources */,
+				72818E1F27D6CE66007FFFC1 /* node.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

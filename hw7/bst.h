@@ -1,21 +1,24 @@
 #pragma once
 
-#include "node.h"
 #include <stdbool.h>
 #include <stdint.h>
 
-extern uint64_t branches;
+#include "node.h"
 
-Node *bst_create(void);
 
-uint32_t bst_height(Node *root);
+//extern uint64_t branches;
 
-uint32_t bst_size(Node *root);
+LLNode *bst_create(void);
 
-Node *bst_find(Node *root, char *oldspeak);
+uint32_t bst_height(LLNode *root);
 
-Node *bst_insert(Node *root, char *oldspeak, char *newspeak);
+uint32_t bst_size(LLNode *root);
 
-void bst_print(Node *root);
+LLNode *bst_find(LLNode *root, LLNode *n);
 
-void bst_delete(Node **root);
+LLNode *bst_insert(HashTable *ht, LLNode *node, LLNode *n_insert);
+
+void bst_print(LLNode *root);
+
+LLNode *bst_delete(LLNode *root, char *key);
+

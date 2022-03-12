@@ -1,24 +1,24 @@
 #pragma once
 
-typedef struct Node Node;
+typedef struct LLNode LLNode;
+typedef struct cus_rec cus_rec;
 
 struct cus_rec {
     char *email;
     char *name;
-    int *shoe_siz;
-    char *food;
+    int shoe_size;
+    char *fav_food;
+    LLNode *left;
+    LLNode *right;
 };
 
-struct Node {
-    struct cus_rec;
-    char *oldspeak;
-    char *newspeak;
-    Node *left;
-    Node *right;
+struct LLNode {
+    cus_rec record;
+    LLNode *next;
 };
 
-Node *node_create(char *oldspeak, char *newspeak);
+LLNode *LLnode_create(void);
 
-void node_delete(Node **n);
+void LLnode_delete(LLNode *n);
 
-void node_print(Node *n);
+void LLnode_print_rec(LLNode *n);

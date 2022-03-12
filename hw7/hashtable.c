@@ -6,7 +6,7 @@ typedef struct FriendNode {
   char *name;   // the key
   char *fav_food;  // values
   int shoe_size; // values
-  struct FriendNode *next;
+  FriendNode *next;
 } FriendNode;
 
 #define NUM_BUCKETS 10

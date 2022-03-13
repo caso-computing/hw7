@@ -3,6 +3,11 @@
 //  hw7
 //
 //  Created by Connor Lynch on 3/2/22.
+//  This is the code to read a customer data base and
+//  then set the mode to 'input' to await a valid user command from the
+//  terminal.
+//  Once the command quit is given, the code exits from input mode and then cleans
+//  up any memory allocated on the stack and closes all open files.
 //
 
 #include <stdio.h>

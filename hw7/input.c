@@ -16,6 +16,7 @@
 #include "node.h"
 #include "ht.h"
 #include "bst.h"
+#include "speck.h"
 
 #define BLOCK 1024
 
@@ -86,7 +87,7 @@ LLNode  *lookup_cus_by_email(HashTable *ht, char *email){
         return NULL;
     }
     buffer[strlen(buffer)-1]='\0';      //strip trailing newline from buffer
-    email=strdup(buffer);
+    strcpy(email,buffer);
     if ((node=ht_lookup(ht, email))){
 //        LLnode_print_rec(node);
         return node;
@@ -105,17 +106,8 @@ bool delete_cus_by_email(HashTable *ht, char *email){
     ht_delete_entry(ht, node);
     return true;
 }
-/*
-void ht_save(HashTable *ht, char *fileout){
-    FILE *fout;
-    fout=fopen(fileout, "w");
-    uint64_t hash_size = ht->size;
 
-    
-    fclose(fout);
-    
-}
-*/
+
 
 //
 // main input data for terminal routine.  It understands five commands typed into stdin:
@@ -132,13 +124,16 @@ bool input(HashTable *ht, char *output_file){
         list,
         list_ordered,
         save,
-        quit
+        quit,
+        hash_key
     };
     char s[20];
+//    char *email="";
     char email[100];
     int sw_val;
     bool more_input=true;
     LLNode *node;
+    uint32_t key=0;
     
     while (more_input){
     printf("\n*** Input a valid command: ");
@@ -154,6 +149,7 @@ bool input(HashTable *ht, char *output_file){
     if (strcmp(s,"list_ordered")==00) sw_val=list_ordered;
     if (strcmp(s,"save")==0) sw_val=save;
     if (strcmp(s,"quit")==0) sw_val=quit;
+    if (strcmp(s,"hash_key")==0) sw_val=hash_key;
     
     
     switch (sw_val){
@@ -174,6 +170,7 @@ bool input(HashTable *ht, char *output_file){
             }
             else{
                 printf("Deleted record key %s\n",email);
+                email[0]='\0';                  // reset string
             }
             break;
         case list:
@@ -189,6 +186,11 @@ bool input(HashTable *ht, char *output_file){
             printf("quiting program.\n");
             //  clean up memory
             more_input=false;
+            break;
+        case hash_key:
+            lookup_cus_by_email(ht, email);
+            key= hash(ht->salt, email);
+            printf("32bit hash key = %u, modulo key = %llu\n",key,key%ht->size);
             break;
         default:
             printf("Not a valid program command. \n");

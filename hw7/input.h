@@ -3,6 +3,7 @@
 //  hw7
 //
 //
+#pragma once
 
 #ifndef input_h
 #define input_h

@@ -37,7 +37,6 @@
 		7248949427D02CF4008E15FB /* ht.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ht.h; sourceTree = "<group>"; };
 		7248949527D02CF4008E15FB /* parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
 		7248949727D034EB008E15FB /* customers.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customers.tsv; sourceTree = "<group>"; };
-		7248949827D55AAD008E15FB /* hashtable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hashtable.c; sourceTree = "<group>"; };
 		7248949927D55AAD008E15FB /* speck.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = speck.c; sourceTree = "<group>"; };
 		7248949A27D55AAD008E15FB /* speck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speck.h; sourceTree = "<group>"; };
 		7248949B27D55AAD008E15FB /* salts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = salts.h; sourceTree = "<group>"; };
@@ -80,7 +79,6 @@
 		7248948927D02BFB008E15FB /* hw7 */ = {
 			isa = PBXGroup;
 			children = (
-				7248949827D55AAD008E15FB /* hashtable.c */,
 				7248949727D034EB008E15FB /* customers.tsv */,
 				7248948A27D02BFB008E15FB /* businessdb.c */,
 				72818E1C27D6B95D007FFFC1 /* ht.c */,

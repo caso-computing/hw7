@@ -23,14 +23,13 @@ void LLnode_delete(LLNode *n){
     free(n->record.fav_food);
     n->record.fav_food=NULL;
     
-    free(n);
     n=NULL;
 }
 
 void LLnode_print_rec(LLNode *n){
     
-    printf("\\tnEMAIL: %s\n",n->record.email);
-    printf("\tNAME: %s\n",n->record.name);
-    printf("\tSHOE SIZE: %d\n",n->record.shoe_size);
-    printf("\tFAVORITE FOOD: %s\n\n",n->record.fav_food);
+    printf("\tEMAIL: %s\n",n->record.email);
+    printf("\t\tNAME: %s\n",n->record.name);
+    printf("\t\tSHOE SIZE: %d\n",n->record.shoe_size);
+    printf("\t\tFAVORITE FOOD: %s\n\n",n->record.fav_food);
 }

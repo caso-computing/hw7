@@ -72,31 +72,30 @@ void ht_delete(HashTable *ht){
 //  the function lookup_entry before trying to delete it.
 
 void ht_delete_entry(HashTable *ht, LLNode *n){
-    LLNode *node = n;
+
     LLNode *cur_ptr, *prev_ptr;
     uint32_t i=hash(ht->salt, n->record.email);
     i = i % ht->size;
     cur_ptr=ht->llink[i];
     prev_ptr=ht->llink[i];
     
-    while (cur_ptr!=node){         // look for where the node to be deleted is on a llink list
+    while (cur_ptr!=n){         // look for where the node to be deleted is on a llink list
         prev_ptr=cur_ptr;
         cur_ptr=cur_ptr->next;
     }
-    if (cur_ptr==ht->llink[i]){    // if first node in link, make sure to set hashtable entry to NULL
-        ht->llink[i]=NULL;
+    if (prev_ptr==cur_ptr){
+        ht->llink[i]=prev_ptr->next;
+    } else {
+        prev_ptr=cur_ptr->next;
     }
-    else {
-        prev_ptr->next=cur_ptr->next;    // Remove node from link
-    }
-        
-    LLnode_delete(n);         // Free up unused memory.
+    
+    LLnode_delete(n);
     n=NULL;
 }
 
 LLNode *ht_lookup(HashTable *ht, char *email){
     LLNode *node = NULL;
-//    void *ptr = NULL;
+//    void *node = NULL;
     uint32_t i=hash(ht->salt, email);
     i = i % ht->size;
     node = ht->llink[i];
@@ -130,12 +129,8 @@ void ht_print(HashTable *ht){
         while(lnode){                   //check to make sure there is an entry at this index
             printf("Hash index = %llu\n",i);
             do {
-                printf ("    email: %s\n",lnode->record.email);
-                printf("    name: %s\n",lnode->record.name);
-                printf("    shoe size = %d\n",lnode->record.shoe_size);
-                printf("    favorite food = %s\n\n",lnode->record.fav_food);
-                lnode = lnode->next;
-                
+                LLnode_print_rec(lnode);
+                lnode = lnode->next;                
             } while (lnode);
         }
     }

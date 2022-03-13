@@ -88,6 +88,11 @@ int main(int argc,  char * argv[]) {
      }
      }
 
+ 
+    if (!(bdb=fopen(inputfile, "r"))){
+        printf("File %s not found.  Exiting program\n",inputfile);
+        exit(-1);
+    }
     
     HashTable *ht = ht_create(buckets);
 
@@ -98,7 +103,7 @@ int main(int argc,  char * argv[]) {
         return 1;
     }
     
-    bdb=fopen(inputfile, "r");
+ 
 
     //  This while loop reads the customer database.  It assumes the database is correct, ie, for each
     //  record in the database, there are 4 fields (email, name, shoe size, favorite food).

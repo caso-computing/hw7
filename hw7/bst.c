@@ -68,7 +68,7 @@ LLNode *bst_delete(LLNode *root, char *key) {
         LLNode *temp = minValueNode(root->record.right);
         
         // Place the inorder successor in position of the node to be deleted
-        root->record.email = temp->record.email;
+        root->record = temp->record;
         
         // Delete the inorder successor
         root->record.right = bst_delete(root->record.right, temp->record.email);

@@ -3,6 +3,7 @@
 //#include "bst.h"
 
 #include "node.h"
+#include "bst.h"
 
 #include <stdint.h>
 
@@ -11,7 +12,7 @@
 typedef struct HashTable HashTable;
 
 struct HashTable{
-    LLNode *root;
+    BSTnode *root;
     uint64_t salt[2];
     uint64_t size;
     uint64_t num_records;

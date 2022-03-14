@@ -34,6 +34,9 @@ void add_cust_re(HashTable *ht){
  */
     //    customer_rec record;
     LLNode *node=LLnode_create();
+    BSTnode *bstnode = bst_create();
+    bstnode->cusPtr=&node->record;           // Set pointers to customer rec so you can modify
+                                            //from either the HT or BST
 
 
     printf("Input email address: ");
@@ -74,7 +77,12 @@ void add_cust_re(HashTable *ht){
     node->record.right=NULL;
     
     ht_insert(ht, node);
-    bst_insert(ht, ht->root, node);
+    if (ht->root){
+        bst_insert(ht, ht->root, bstnode);
+    }
+    else{
+        ht->root=bstnode;
+    }
     return;
 }
 

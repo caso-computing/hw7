@@ -51,15 +51,28 @@ Also, the program can do command line parsing to change bucket size, input file,
             char *name;
             int shoe_size;
             char *fav_food;
-            LLNode *left;           // Connects node to the left in the BST : not used in the HT
-            LLNode *right;          // Connects node to the right in the BST : not used for the HT
+            LLNode *left;           // Not used.  Updated with seperate BST Node structure
+            LLNode *right;          // Not used.  Updated with seperate BST Node sturcutre (below)
         };
 
-   ### Hash Table Links to LL -  This structure is used in the hash table linked list of nodes to cus recs
+   ### Hash Table LL Nodes -  This structure is used in the hash table linked list of nodes to cus recs
         struct LLNode {
             cus_rec record;
             LLNode *next;           //  Linked list from the hash table bucket
         };
+        
+    ### BST Nodes           -  Added this during the debug cycle.  Turns out my bright idea of adding
+                               the tree pointers in the customer records was not that bright.  Creating
+                               the structure this way mean I didn't have to change any code for inserting
+                               and deleting from the hashtable.  Just change variables in the BST.c code
+                               Note:  I'm just droping the a HT linked node into a BST node.
+        struct BSTnode {
+            Cus_Rec *cusPtr;    //Makes it easy to copy data from LLnode to a BSTnode
+            BSTnode *left;
+            BSTnode *right;
+        };
+        
+}
 
 ###Hash Table
         struct HashTable{

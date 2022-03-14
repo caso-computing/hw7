@@ -1,24 +1,31 @@
 #pragma once
 
-#include <stdbool.h>
-#include <stdint.h>
 
-#include "node.h"
+
+typedef struct BSTnode BSTnode;
+typedef struct HashTable HashTable;
+
+
+struct BSTnode {
+    cus_rec *cusPtr;
+    BSTnode *left;
+    BSTnode *right;
+};
 
 
 //extern uint64_t branches;
 
-LLNode *bst_create(void);
+BSTnode *bst_create(void);
 
 uint32_t bst_height(LLNode *root);
 
 uint32_t bst_size(LLNode *root);
 
-LLNode *bst_find(LLNode *root, LLNode *n);
+BSTnode *bst_find(LLNode *root, LLNode *n);
 
-LLNode *bst_insert(HashTable *ht, LLNode *node, LLNode *n_insert);
+BSTnode *bst_insert(HashTable *ht, BSTnode *node, BSTnode *n_insert);
 
-void bst_print(LLNode *root);
+void bst_print(BSTnode *root);
 
-LLNode *bst_delete(LLNode *root, char *key);
+BSTnode *bst_delete(BSTnode *root, char *key);
 

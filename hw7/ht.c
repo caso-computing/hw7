@@ -30,6 +30,7 @@ HashTable *ht_create(uint32_t size){
 
     HashTable *out = (HashTable *) calloc(1, sizeof(HashTable));
     out->size= size;
+    out->root=NULL;                                     // Also inits BST to NULL
     out->salt[0]=SALT_HASHTABLE_LO;
     out->salt[1]=SALT_HASHTABLE_HI;
     out->long_link=0;
@@ -108,6 +109,11 @@ LLNode *ht_lookup(HashTable *ht, char *email){
     return node;
 }
 
+//
+// Adds a new entry into the hash table.
+// This assumes that the entry doesn't already exist
+//Entries are inserted at the beginning of the linked list for any particular hash bucket
+//
 void ht_insert(HashTable *ht, LLNode *node){
     
     uint32_t i=hash(ht->salt, node->record.email);

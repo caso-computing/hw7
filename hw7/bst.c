@@ -6,82 +6,104 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "ht.h"
 #include "node.h"
 
-LLNode *bst_insert(HashTable *ht, LLNode *node,LLNode *n_insert){
+BSTnode *bst_create(void){
+    return ((BSTnode *)malloc(sizeof(BSTnode)));
+}
+
+BSTnode *bst_insert(HashTable *ht, BSTnode *node, BSTnode *n_insert){
     
     if (node==NULL){
-        return (node=n_insert);
+        return (n_insert);
     }
-    if (strcmp(n_insert->record.email, node->record.email)<0){
-        node->record.left=bst_insert(ht,node->record.left, n_insert);
+    if (strcmp(n_insert->cusPtr->email, node->cusPtr->email)<0){
+        node->left=bst_insert(ht,node->left, n_insert);
     }
-    else if (strcmp(n_insert->record.email, node->record.email)>0){
-        node->record.right=bst_insert(ht,node->record.right,n_insert);
+    else if (strcmp(n_insert->cusPtr->email, node->cusPtr->email)>0){
+        node->right=bst_insert(ht,node->right,n_insert);
     }
-    else{
-        node->record.name=n_insert->record.name;
-        node->record.shoe_size=n_insert->record.shoe_size;
-        node->record.fav_food=n_insert->record.fav_food;
+    else{                             //  email key already exits, so just copy updated name,
+                                      //  fav_food, and shoe size
+        free(node->cusPtr->name);
+        node->cusPtr->name=strdup(n_insert->cusPtr->name);
+        free(node->cusPtr->fav_food);
+        node->cusPtr->fav_food=strdup(n_insert->cusPtr->fav_food);
+        node->cusPtr->shoe_size=n_insert->cusPtr->shoe_size;
         return NULL;
     }
     return node;
 }
 
 // Find the inorder successor
-LLNode *minValueNode(LLNode *node) {
-    LLNode *current = node;
+BSTnode *minValueNode(BSTnode *node) {
+    BSTnode *current = node;
     
     // Find the leftmost leaf
-    while (current && current->record.left != NULL)
-        current = current->record.left;
+    while (current && current->left != NULL)
+        current = current->left;
     
     return current;
 }
 
 // Deleting a node
-LLNode *bst_delete(LLNode *root, char *key) {
+BSTnode *bst_delete(BSTnode *root, char *key) {
     // Return if the tree is empty
     if (root == NULL) return root;
     
     // Find the node to be deleted
-    if (strcmp(key,root->record.email)<0){
-        root->record.left = bst_delete(root->record.left, key);
+    if (strcmp(key,root->cusPtr->email)<0){
+        root->left = bst_delete(root->left, key);
     }
-    else if (strcmp(key, root->record.email)>0)
-        root->record.right = bst_delete(root->record.right, key);
+    else if (strcmp(key, root->cusPtr->email)>0)
+        root->right = bst_delete(root->right, key);
     
     else {
         // If the node is with only one child or no child
-        if (root->record.left == NULL) {
-            LLNode *temp = root->record.right;
+        if (root->left == NULL) {
+            BSTnode *temp = root->right;
             return temp;
-        } else if (root->record.right == NULL) {
-            LLNode *temp = root->record.left;
+        } else if (root->right == NULL) {
+            BSTnode *temp = root->left;
             return temp;
         }
         
         // If the node has two children
-        LLNode *temp = minValueNode(root->record.right);
+        BSTnode *temp = minValueNode(root->right);
         
         // Place the inorder successor in position of the node to be deleted
-        root->record = temp->record;
+//        free(root);                 //  Delete the memory pointed to by root, ie node being deleted
+        root->cusPtr=temp->cusPtr;      // Replace root customer ptr w successors customer ptr
+        root->right=temp->right;        // Then make sure the root now points to the successor R leaf
+        free(temp);                     //Don't need the successors container anymore
+        temp=NULL;
         
-        // Delete the inorder successor
-        root->record.right = bst_delete(root->record.right, temp->record.email);
     }
     return root;
 }
 
 
-void bst_print(LLNode *node){
+void bst_print(BSTnode *node){
     if (node != NULL){
-        bst_print(node->record.left);
-        printf("[key]: %s\n",node->record.email);
-        bst_print(node->record.right);
+        bst_print(node->left);
+        printf("[key]: %s\n",node->cusPtr->email);
+        if (node->left){
+            printf("Left = %s",node->left->cusPtr->email);
+        }
+        else {
+            printf("Left = NULL");
+        }
+        if (node->right){
+            printf(", Right = %s\n",node->right->cusPtr->email);
+        }
+        else{
+            printf(", Right = NULL\n");
+        }
+        bst_print(node->right);
     }
     
 }

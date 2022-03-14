@@ -119,6 +119,7 @@ int main(int argc,  char * argv[]) {
     //
     while (true){
         LLNode *node=LLnode_create();
+        BSTnode *bstnode = bst_create();
         
         if (!(field=next_word(bdb, &db_parse))){
             free(node);                                     // we don't need our last node.
@@ -131,11 +132,17 @@ int main(int argc,  char * argv[]) {
         node->record.fav_food=strdup(next_word(bdb, &db_parse));
         node->record.left=NULL;
         node->record.right=NULL;
+        
+        bstnode->cusPtr=&node->record;
+        bstnode->right=NULL;
+        bstnode->left=NULL;
         ht_insert(ht, node);
-        if (ht->root==NULL){
-            ht->root=node;
+        if (ht->root){
+            bst_insert(ht,ht->root,bstnode);
         }
-        bst_insert(ht,ht->root,node);
+        else {
+            ht->root=bstnode;
+        }
     }
     printf("*** Done creating hash table & BST from DB file.\n\n");
     regfree(&db_parse);

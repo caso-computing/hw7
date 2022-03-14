@@ -5,12 +5,12 @@
 
 # introduction
 
-This homework is to implements austomer lookup database using hash tables.  I'm also implementing 
+This homework implements a customer lookup database using hash tables.  I'm also implementing 
 the **hardmode** version of the program to include inserting each customer record into a BST structure.
 
 I will also be using "regular expressions" to parse the customer database table.
 
-Also, the program can do command line parsing to change bucket size, input file, output file, and a synopsis of usage. 
+I've also added command line parsing to change bucket size, input file, output file, and a synopsis of usage.   see below for flags and synopsis.
 
 **Code Acknowledgements**
   Dr. Long
@@ -33,6 +33,18 @@ Also, the program can do command line parsing to change bucket size, input file,
   
   **Note on the BST**:  Since the binary search table only makes sense with the DB's HashTable, I put the pointer to the root of the BST in the structure for the hashtable.  This made more sense than tracking the BST as a seperate structure.  The other reason was that when an entry was deleted from the hash
       table, it also had to be deleted from the BST.  Otherwise, you could have pointers floating around to nodes that had alread been 'free()'.
+      
+      Correction:  I made an update to the above.  It was simpler to create a BST node with right and left pointers and a pointer to the customer record stored in the HT node in the hash table.  It made the
+          addition and deletion in the BST table a lot simpler.  Before this, when I deleted a record, I
+          would also replace the key in a ht node with the successors key.  This had a nasty side affect of
+          leaving the successors key in the wrong bucket on the hash table.  The delinking of these two
+          structures made the code much easier to implement.
+
+##Input Commands##
+  notes:  List will print out all records in the HT along with the customer rec.  list_ordered will print out only the bst keys.  It also provides a helpful 'left, right' pointer output so one can visulize the structure of the tree itself.  The form for each key is...
+            key:  keyname (email address)
+                left->node->keyname, right->node->keyname
+        There is also one hidden command, hey_hash that prints out the hash number for any data inputed on the next line.  It also prints the bucket number generated from that hash key.
 
 **Limitations**
   o  There is no checking to ensure any of the data base fields make sense.  eg, I don't' check 
@@ -40,6 +52,7 @@ Also, the program can do command line parsing to change bucket size, input file,
   o  The database has to be formatted as lines of records with 4 fields, each field seperated by a tab
      character.  (thus, a tsv file).  The fields are:  email, name, shoe size (read as an integer), 
      favorite food.
+  o  The root node of the BST is created using the 1st record read from the customer DB.  There is no logic to try and "balance" the tree.  This means that if the 1st record of the DB contains an ascii value that is very low (eg, APPLE) or high (eg, zebra), you will end up with a very unbalance tree of O(n).
   o  The input command **Listed_ordered** returns the value of emails sorted in ASCII order.  That means all capitalize letters will be sorted BEFORE lower case letters.  This could be changed by changing the node key in the BST routine to insert and remove by converting uppercase letters to lowercase during insertion and removing (but not changing the node record value of uppercase letters).  
 
 
@@ -67,7 +80,10 @@ Also, the program can do command line parsing to change bucket size, input file,
                                and deleting from the hashtable.  Just change variables in the BST.c code
                                Note:  I'm just droping the a HT linked node into a BST node.
         struct BSTnode {
-            Cus_Rec *cusPtr;    //Makes it easy to copy data from LLnode to a BSTnode
+            Cus_Rec *cusPtr;    //Makes it easy to copy data from LLnode to a BSTnode.  More importantly,
+                                //there's no need to duplicate space for the customer record in both the
+                                //BST structure and Hash Table structure.  This is a big benefit if the 
+                                //DB becomes really large.
             BSTnode *left;
             BSTnode *right;
         };
@@ -129,6 +145,19 @@ add_customer_rec(ht, customer_rec) {
   ht-llink[key]=customer_rec
   if temp (!null) then customer_rec->llink=null
   }
+  
+ bstInsert (root node, node to insert)
+   insert node into bst in a postorder insertion
+   }
+
+bstDelete(root node, node to delete){
+  recursively search down bst tree to locate node to delete
+  then search for the min successor to replace node to delete
+  change parent pointer to point to successsor node
+  set successor's left and right pointers
+  (you actually replaced the contents of the deleted BST node with the successor's data)
+    therefore you need to reclaim the memmory of the successors node since it is tucked in the 'deleted' node
+}
   
 display_customer(ht, customer_rec.email){
     key = hash(customer_rec.email)%ht->size

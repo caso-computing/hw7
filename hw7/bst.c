@@ -11,9 +11,21 @@
 
 #include "ht.h"
 #include "node.h"
+#include "bst.h"
 
 BSTnode *bst_create(void){
     return ((BSTnode *)malloc(sizeof(BSTnode)));
+}
+
+void bst_destroy(BSTnode *root){
+
+  if (root != NULL){
+      bst_destroy(root->left);
+      bst_destroy(root->right);
+      free(root);                   // if we get to here, this has to be a end node to be taken out.
+      root=NULL;
+      return;
+  }
 }
 
 BSTnode *bst_insert(HashTable *ht, BSTnode *node, BSTnode *n_insert){

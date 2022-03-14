@@ -124,6 +124,8 @@ int main(int argc,  char * argv[]) {
         if (!(field=next_word(bdb, &db_parse))){
             free(node);                                     // we don't need our last node.
             node=NULL;
+            free(bstnode);
+            bstnode=NULL;
             break;                                          // Reached end of Customer DB
         }
         node->record.email=strdup(field);
@@ -137,7 +139,7 @@ int main(int argc,  char * argv[]) {
         bstnode->right=NULL;
         bstnode->left=NULL;
         ht_insert(ht, node);
-        if (ht->root){
+        if (ht->root){                                      //test to see if this is the 1st BST node
             bst_insert(ht,ht->root,bstnode);
         }
         else {
@@ -145,13 +147,14 @@ int main(int argc,  char * argv[]) {
         }
     }
     printf("*** Done creating hash table & BST from DB file.\n\n");
-    regfree(&db_parse);
+    regfree(&db_parse);        // Free regexp compile structure
     fclose(bdb);              // Done reading from DB, so close it.
     
 //  Main i/o input of program
     input(ht,outputfile);                // go process termional input commands
     
 //  Now clean up all allocated pointers.  We can trace all dynaic pointers via the hash table ptr.
+    bst_destroy(ht->root);
     ht_delete(ht);
     ht=NULL;
 

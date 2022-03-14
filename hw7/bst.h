@@ -17,11 +17,7 @@ struct BSTnode {
 
 BSTnode *bst_create(void);
 
-uint32_t bst_height(LLNode *root);
-
-uint32_t bst_size(LLNode *root);
-
-BSTnode *bst_find(LLNode *root, LLNode *n);
+void bst_destroy(BSTnode *root);
 
 BSTnode *bst_insert(HashTable *ht, BSTnode *node, BSTnode *n_insert);
 

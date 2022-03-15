@@ -37,12 +37,16 @@ void add_cust_re(HashTable *ht){
     BSTnode *bstnode = bst_create();
     bstnode->cusPtr=&node->record;           // Set pointers to customer rec so you can modify
                                             //from either the HT or BST
+    bstnode->left=NULL;
+    bstnode->right=NULL;
 
 
     printf("Input email address: ");
     if (!fgets(buffer, BLOCK, stdin)) {
         free(node);
         node = NULL;
+        free(bstnode);
+        bstnode=NULL;
         return ;
     }
     buffer[strlen(buffer)-1]='\0';      //strip trailing newline from buffer
@@ -52,6 +56,8 @@ void add_cust_re(HashTable *ht){
     if (!fgets(buffer, BLOCK, stdin)) {
         free(node);
         node = NULL;
+        free(bstnode);
+        bstnode=NULL;
         return ;
     }
     buffer[strlen(buffer)-1]='\0';      //strip trailing newline from buffer
@@ -61,6 +67,8 @@ void add_cust_re(HashTable *ht){
     if (!fgets(buffer, BLOCK, stdin)) {
         free(node);
         node = NULL;
+        free(bstnode);
+        bstnode=NULL;
         return ;
     }
     node->record.shoe_size=atoi(buffer);
@@ -69,6 +77,8 @@ void add_cust_re(HashTable *ht){
     if (!fgets(buffer, BLOCK, stdin)) {
         free(node);
         node = NULL;
+        free(bstnode);
+        bstnode=NULL;
         return ;
     }
     buffer[strlen(buffer)-1]='\0';      //strip trailing newline from buffer
@@ -109,8 +119,8 @@ bool delete_cus_by_email(HashTable *ht, char *email){
         printf("Couldn't find email address: %s\n\n",email);
         return false;
     }
-    printf("Deleting record with key = %s\n",node->record.email);
-    bst_delete(ht->root, node->record.email);
+//    printf("Deleting record with key = %s\n",node->record.email);
+    bst_delete(ht->root, email);
     ht_delete_entry(ht, node);
     return true;
 }
@@ -177,7 +187,7 @@ bool input(HashTable *ht, char *output_file){
                 printf("Couldn't find customer email %s\nPlease enter a new command.\n",email);
             }
             else{
-                printf("Deleted record key %s\n",email);
+                printf("Deleted key record %s\n",email);
                 email[0]='\0';                  // reset string
             }
             break;
@@ -198,7 +208,7 @@ bool input(HashTable *ht, char *output_file){
         case hash_key:
             lookup_cus_by_email(ht, email);
             key= hash(ht->salt, email);
-            printf("32bit hash key = %u, modulo key = %llu\n",key,key%ht->size);
+            printf("32bit hash key = %u, modulo key = %llu\n",key,(uint32_t) key%ht->size);
             break;
         default:
             printf("Not a valid program command. \n");

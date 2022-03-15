@@ -64,8 +64,13 @@ BSTnode *minValueNode(BSTnode *node) {
 
 // Deleting a node
 BSTnode *bst_delete(BSTnode *root, char *key) {
+    
+    BSTnode *temp=NULL;
+    
     // Return if the tree is empty
-    if (root == NULL) return root;
+    if (root == NULL){
+        return root;
+    }
     
     // Find the node to be deleted
     if (strcmp(key,root->cusPtr->email)<0){
@@ -77,22 +82,25 @@ BSTnode *bst_delete(BSTnode *root, char *key) {
     else {
         // If the node is with only one child or no child
         if (root->left == NULL) {
-            BSTnode *temp = root->right;
+            temp=root->right;
+            root->cusPtr=NULL;
+            free(root);
             return temp;
         } else if (root->right == NULL) {
-            BSTnode *temp = root->left;
+            temp=root->left;
+            root->cusPtr=NULL;
+            free(root);
             return temp;
         }
         
         // If the node has two children
-        BSTnode *temp = minValueNode(root->right);
+        temp = minValueNode(root->right);
         
         // Place the inorder successor in position of the node to be deleted
 //        free(root);                 //  Delete the memory pointed to by root, ie node being deleted
         root->cusPtr=temp->cusPtr;      // Replace root customer ptr w successors customer ptr
-        root->right=temp->right;        // Then make sure the root now points to the successor R leaf
-        free(temp);                     //Don't need the successors container anymore
-        temp=NULL;
+                                        // Then make sure the root now points to the successor R leaf
+        root->right = bst_delete(root->right, temp->cusPtr->email);
         
     }
     return root;
@@ -104,10 +112,10 @@ void bst_print(BSTnode *node){
         bst_print(node->left);
         printf("[key]: %s\n",node->cusPtr->email);
         if (node->left){
-            printf("Left = %s",node->left->cusPtr->email);
+            printf("\t\t\tLeft = %s",node->left->cusPtr->email);
         }
         else {
-            printf("Left = NULL");
+            printf("\t\t\tLeft = NULL");
         }
         if (node->right){
             printf(", Right = %s\n",node->right->cusPtr->email);

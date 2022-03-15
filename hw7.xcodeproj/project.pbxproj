@@ -29,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		721FC43A27E0748100545751 /* bstdelete.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bstdelete.c; sourceTree = "<group>"; };
 		7248948727D02BFB008E15FB /* hw7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hw7; sourceTree = BUILT_PRODUCTS_DIR; };
 		7248948A27D02BFB008E15FB /* businessdb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = businessdb.c; sourceTree = "<group>"; };
 		7248949127D02CF3008E15FB /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
@@ -84,6 +85,7 @@
 				72818E1C27D6B95D007FFFC1 /* ht.c */,
 				7248949427D02CF4008E15FB /* ht.h */,
 				72818E1827D58361007FFFC1 /* input.c */,
+				721FC43A27E0748100545751 /* bstdelete.c */,
 				72818E1727D58361007FFFC1 /* input.h */,
 				7248949527D02CF4008E15FB /* parser.c */,
 				7248949127D02CF3008E15FB /* parser.h */,

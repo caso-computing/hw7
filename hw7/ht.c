@@ -87,11 +87,10 @@ void ht_delete_entry(HashTable *ht, LLNode *n){
     if (prev_ptr==cur_ptr){
         ht->llink[i]=prev_ptr->next;
     } else {
-        prev_ptr=cur_ptr->next;
+        prev_ptr->next =cur_ptr->next;
     }
     
     LLnode_delete(n);
-    n=NULL;
 }
 
 LLNode *ht_lookup(HashTable *ht, char *email){

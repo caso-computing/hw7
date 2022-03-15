@@ -22,7 +22,7 @@ void LLnode_delete(LLNode *n){
     n->record.name=NULL;
     free(n->record.fav_food);
     n->record.fav_food=NULL;
-    
+    free(n);
     n=NULL;
 }
 
